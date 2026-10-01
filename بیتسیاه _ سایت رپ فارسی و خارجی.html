@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>بیت‌سیاه | خانه‌ی رپ فارسی و جهانی</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#04060b;
+  --bg2:#070c16;
+  --panel:rgba(255,255,255,0.045);
+  --panel-strong:rgba(255,255,255,0.075);
+  --border:rgba(120,175,255,0.16);
+  --border-strong:rgba(140,190,255,0.32);
+  --blue:#2f6bff;
+  --blue2:#5c8dff;
+  --ice:#8fd6ff;
+  --text:#eef3fb;
+  --muted:#93a2bd;
+  --muted2:#5e6c86;
+  --radius:18px;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;scroll-padding-top:80px;}
+body{
+  font-family:'Vazirmatn',sans-serif;
+  background:
+    radial-gradient(60vw 60vw at 85% -10%, rgba(47,107,255,0.20), transparent 60%),
+    radial-gradient(50vw 50vw at -10% 30%, rgba(90,150,255,0.12), transparent 60%),
+    var(--bg);
+  color:var(--text);
+  min-height:100%;
+  overflow-x:hidden;
+  line-height:1.75;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+::selection{background:var(--blue);color:#fff;}
+::-webkit-scrollbar{width:10px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--blue),#0a1633);border-radius:10px;}
+
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+
+/* ---------- background fx ---------- */
+.bg-orbs{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+.orb{position:absolute;border-radius:50%;filter:blur(70px);opacity:0.35;animation:float 22s ease-in-out infinite;}
+.orb1{width:38vw;height:38vw;background:#2f6bff;top:-10%;right:-8%;animation-duration:26s;}
+.orb2{width:26vw;height:26vw;background:#0d2e6b;bottom:0%;left:-6%;animation-duration:20s;animation-delay:-4s;}
+.orb3{width:18vw;height:18vw;background:#8fd6ff;top:45%;left:38%;animation-duration:30s;animation-delay:-10s;opacity:.18;}
+@keyframes float{
+  0%,100%{transform:translate(0,0) scale(1);}
+  33%{transform:translate(3%,6%) scale(1.08);}
+  66%{transform:translate(-4%,-3%) scale(0.95);}
+}
+.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.035;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- header ---------- */
+header{
+  position:sticky;top:0;z-index:50;
+  padding-top:env(safe-area-inset-top,0px);
+  backdrop-filter:blur(18px) saturate(140%);
+  -webkit-backdrop-filter:blur(18px) saturate(140%);
+  background:rgba(4,6,11,0.55);
+  border-bottom:1px solid var(--border);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;height:74px;}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.15rem;letter-spacing:.2px;}
+.logo-mark{
+  width:38px;height:38px;border-radius:11px;
+  background:linear-gradient(155deg,var(--blue),#0a1633 78%);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 0 1px var(--border-strong), 0 8px 24px -6px rgba(47,107,255,.65);
+  flex-shrink:0;
+}
+.logo-mark svg{width:20px;height:20px;}
+nav.links{display:flex;gap:6px;align-items:center;}
+nav.links a{
+  padding:9px 16px;border-radius:999px;font-size:.94rem;color:var(--muted);
+  transition:color .25s ease, background .25s ease;
+}
+nav.links a:hover,nav.links a:focus-visible{color:var(--text);background:var(--panel);}
+.nav-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(95deg,var(--blue),#1d47b8);
+  color:#fff;padding:9px 18px;border-radius:999px;font-weight:700;font-size:.9rem;
+  box-shadow:0 10px 24px -10px rgba(47,107,255,.8);
+  border:1px solid rgba(255,255,255,.15);
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 14px 30px -10px rgba(47,107,255,.95);}
+.burger{display:none;width:42px;height:42px;border-radius:12px;background:var(--panel);border:1px solid var(--border);align-items:center;justify-content:center;flex-direction:column;gap:5px;cursor:pointer;}
+.burger span{width:18px;height:2px;background:var(--text);border-radius:2px;transition:.25s;}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.burger.open span:nth-child(2){opacity:0;}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+/* ---------- hero ---------- */
+.hero{position:relative;z-index:2;padding:88px 0 70px;text-align:center;}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid var(--border-strong);background:var(--panel);
+  padding:7px 16px;border-radius:999px;font-size:.82rem;color:var(--ice);
+  margin-bottom:26px;
+}
+.badge .dot{width:6px;height:6px;border-radius:50%;background:var(--ice);box-shadow:0 0 10px 2px var(--ice);animation:pulse 1.8s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.35;}}
+h1.hero-title{
+  font-size:clamp(2.3rem,6.4vw,4.6rem);
+  font-weight:900;letter-spacing:-.02em;line-height:1.18;
+  background:linear-gradient(95deg,#fff 20%,var(--ice) 55%,var(--blue2) 85%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  max-width:920px;margin:0 auto;
+}
+.hero-sub{
+  max-width:600px;margin:22px auto 0;color:var(--muted);font-size:1.08rem;
+}
+.hero-actions{display:flex;gap:14px;justify-content:center;margin-top:38px;flex-wrap:wrap;}
+.btn-primary,.btn-ghost{
+  padding:14px 26px;border-radius:14px;font-weight:700;font-size:.98rem;
+  display:inline-flex;align-items:center;gap:8px;transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.btn-primary{
+  background:linear-gradient(95deg,var(--blue),#132a6b);color:#fff;
+  box-shadow:0 14px 32px -12px rgba(47,107,255,.9);border:1px solid rgba(255,255,255,.15);
+}
+.btn-primary:hover{transform:translateY(-3px);}
+.btn-ghost{
+  background:var(--panel);border:1px solid var(--border);color:var(--text);
+}
+.btn-ghost:hover{background:var(--panel-strong);border-color:var(--border-strong);}
+
+/* ticker */
+.ticker{
+  margin-top:64px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  background:var(--panel);overflow:hidden;padding:14px 0;
+}
+.ticker-track{display:flex;width:max-content;gap:40px;animation:scroll-x 26s linear infinite;}
+.ticker-track span{font-size:.92rem;color:var(--muted);white-space:nowrap;display:flex;align-items:center;gap:10px;}
+.ticker-track span::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--ice);}
+@keyframes scroll-x{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* ---------- shared section styles ---------- */
+section{position:relative;z-index:2;padding:96px 0;}
+.section-head{max-width:640px;margin:0 auto 52px;text-align:center;}
+.eyebrow-line{display:flex;align-items:center;gap:10px;justify-content:center;color:var(--ice);font-size:.85rem;font-weight:600;margin-bottom:14px;}
+.eyebrow-line i{width:22px;height:1px;background:var(--ice);display:block;}
+h2.section-title{font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:800;letter-spacing:-0.01em;}
+.section-desc{color:var(--muted);margin-top:14px;font-size:1rem;}
+
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1);}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+/* glass card base */
+.glass{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  backdrop-filter:blur(16px) saturate(130%);
+  -webkit-backdrop-filter:blur(16px) saturate(130%);
+}
+
+/* ---------- articles ---------- */
+.articles{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;}
+.article-card{padding:26px;cursor:pointer;transition:border-color .25s ease, transform .25s ease, background .25s ease;}
+.article-card:hover{border-color:var(--border-strong);transform:translateY(-4px);background:var(--panel-strong);}
+.article-tag{display:inline-block;font-size:.74rem;font-weight:700;color:var(--ice);background:rgba(143,214,255,.1);border:1px solid rgba(143,214,255,.25);padding:4px 11px;border-radius:999px;margin-bottom:16px;}
+.article-card h3{font-size:1.18rem;font-weight:700;margin-bottom:10px;line-height:1.5;}
+.article-excerpt{color:var(--muted);font-size:.93rem;}
+.article-full{
+  color:var(--muted);font-size:.93rem;max-height:0;overflow:hidden;
+  transition:max-height .45s ease, margin-top .45s ease;
+}
+.article-card.open .article-full{margin-top:14px;}
+.article-more{display:flex;align-items:center;gap:6px;color:var(--blue2);font-weight:700;font-size:.85rem;margin-top:16px;}
+.article-more svg{width:14px;height:14px;transition:transform .3s ease;}
+.article-card.open .article-more svg{transform:rotate(180deg);}
+
+/* ---------- rapper grids ---------- */
+.rappers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;}
+.rapper-card{
+  padding:22px;position:relative;overflow:hidden;
+  transition:transform .3s ease, border-color .3s ease, background .3s ease;
+}
+.rapper-card:hover{transform:translateY(-5px);border-color:var(--border-strong);background:var(--panel-strong);}
+.rapper-top{display:flex;align-items:center;gap:14px;margin-bottom:16px;}
+.avatar{
+  width:56px;height:56px;border-radius:16px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.1rem;color:#fff;
+  background:linear-gradient(150deg,var(--blue2),#0d1c46);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.18);
+}
+.rapper-name{font-weight:700;font-size:1.03rem;}
+.rapper-role{color:var(--muted2);font-size:.78rem;margin-top:2px;}
+.songs{display:flex;flex-direction:column;gap:8px;}
+.song{
+  display:flex;align-items:center;gap:10px;font-size:.87rem;color:var(--muted);
+  padding:8px 10px;border-radius:10px;background:rgba(255,255,255,.025);border:1px solid transparent;
+  transition:border-color .2s ease, color .2s ease, background .2s ease;
+}
+.rapper-card:hover .song{border-color:var(--border);}
+.song svg{width:13px;height:13px;flex-shrink:0;color:var(--ice);}
+.tab-row{display:flex;gap:10px;justify-content:center;margin-bottom:40px;flex-wrap:wrap;}
+.tab-btn{
+  padding:10px 22px;border-radius:999px;font-weight:700;font-size:.88rem;cursor:pointer;
+  border:1px solid var(--border);background:var(--panel);color:var(--muted);transition:.25s;
+}
+.tab-btn.active{background:linear-gradient(95deg,var(--blue),#132a6b);color:#fff;border-color:transparent;}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+
+/* ---------- gallery strip ---------- */
+.strip{position:relative;z-index:2;padding:20px 0;}
+.strip .wrap{overflow:hidden;}
+.vinyl-row{display:flex;gap:16px;width:max-content;animation:scroll-x2 34s linear infinite;}
+.vinyl{
+  width:120px;height:120px;border-radius:50%;flex-shrink:0;
+  background:radial-gradient(circle at 50% 50%, #04060b 0 14px, #0c1730 15px 20px, #142a5c 21px 42px, #04060b 43px 44px, #0a1330 45px 100%);
+  border:1px solid var(--border);
+  animation:spin 6s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg);}}
+@keyframes scroll-x2{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* ---------- style pills ---------- */
+.pill-cloud{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;}
+.pill{
+  padding:12px 22px;border-radius:14px;font-size:.9rem;font-weight:600;color:var(--text);
+  border:1px solid var(--border);background:var(--panel);transition:.25s;
+}
+.pill:hover{border-color:var(--border-strong);background:var(--panel-strong);transform:translateY(-3px);}
+
+/* ---------- contact / telegram ---------- */
+.contact-card{
+  max-width:640px;margin:0 auto;padding:44px 36px;text-align:center;position:relative;overflow:hidden;
+}
+.contact-card::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(60% 60% at 50% 0%, rgba(47,107,255,.25), transparent 70%);
+  pointer-events:none;
+}
+.tg-icon{
+  width:58px;height:58px;border-radius:16px;margin:0 auto 20px;
+  background:linear-gradient(150deg,var(--blue2),#0d1c46);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 10px 26px -10px rgba(47,107,255,.8);
+}
+.tg-id{
+  display:inline-flex;align-items:center;gap:12px;margin-top:22px;
+  padding:13px 22px;border-radius:14px;background:rgba(255,255,255,.05);border:1px solid var(--border-strong);
+  font-weight:700;font-size:1.02rem;letter-spacing:.02em;direction:ltr;
+}
+.copy-btn{
+  border:1px solid var(--border);background:var(--panel);color:var(--muted);
+  padding:6px 14px;border-radius:9px;font-size:.78rem;font-weight:700;cursor:pointer;transition:.2s;
+  font-family:inherit;
+}
+.copy-btn:hover{color:var(--text);border-color:var(--border-strong);}
+.copy-btn.copied{color:var(--ice);border-color:var(--ice);}
+
+/* ---------- footer ---------- */
+footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:52px 0 34px;}
+.footer-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:36px;}
+.footer-title{font-weight:700;margin-bottom:16px;font-size:.98rem;}
+.footer-desc{color:var(--muted);font-size:.88rem;max-width:320px;}
+.footer-links{display:flex;flex-direction:column;gap:10px;}
+.footer-links a{color:var(--muted);font-size:.88rem;transition:color .2s;}
+.footer-links a:hover{color:var(--ice);}
+.footer-bottom{
+  margin-top:44px;padding-top:22px;border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;
+  color:var(--muted2);font-size:.8rem;
+}
+
+/* ---------- responsive ---------- */
+@media (max-width:860px){
+  .footer-grid{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:760px){
+  nav.links{
+    position:fixed;inset-inline:16px;top:80px;
+    flex-direction:column;align-items:stretch;gap:4px;
+    background:rgba(6,9,16,0.92);backdrop-filter:blur(20px);
+    border:1px solid var(--border);border-radius:18px;padding:14px;
+    transform:translateY(-14px) scale(.98);opacity:0;pointer-events:none;
+    transition:.25s ease;z-index:60;
+  }
+  nav.links.open{transform:translateY(0) scale(1);opacity:1;pointer-events:auto;}
+  nav.links a{padding:13px 16px;font-size:1rem;}
+  .nav-cta{display:none;}
+  .burger{display:flex;}
+  section{padding:64px 0;}
+  .footer-grid{grid-template-columns:1fr;gap:28px;}
+  .contact-card{padding:34px 20px;}
+}
+@media (max-width:480px){
+  .wrap{padding:0 18px;}
+  h1.hero-title{font-size:2rem;}
+  .hero{padding:56px 0 44px;}
+  .hero-actions{flex-direction:column;align-items:stretch;}
+  .tg-id{flex-direction:column;gap:10px;}
+}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-orbs"><div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div></div>
+<div class="grain"></div>
+
+<header>
+  <div class="wrap nav">
+    <a href="#top" class="logo">
+      <span class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18V5l10-2v13" stroke="#eaf3ff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6" cy="18" r="3" stroke="#eaf3ff" stroke-width="1.6"/><circle cx="16" cy="16" r="3" stroke="#eaf3ff" stroke-width="1.6"/></svg>
+      </span>
+      بیت‌سیاه
+    </a>
+    <nav class="links" id="navLinks">
+      <a href="#home">خانه</a>
+      <a href="#articles">مقالات</a>
+      <a href="#rappers">رپرها</a>
+      <a href="#styles">سبک‌ها</a>
+      <a href="#contact">تماس</a>
+    </nav>
+    <a href="#contact" class="nav-cta">
+      عضویت در کانال
+    </a>
+    <button class="burger" id="burger" aria-label="باز کردن منو"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="wrap">
+      <div class="badge"><span class="dot"></span> خونه‌ی رپ فارسی و رپ جهانی</div>
+      <h1 class="hero-title">صدای خیابون رو با ریتم درست گوش کن</h1>
+      <p class="hero-sub">مقاله، معرفی رپر، و آرشیو آهنگ‌های شاخص رپ فارسی و رپ خارجی؛ همه‌چیز در یک فضای تاریک و آبی، ساخته‌شده برای نسلی که با بیت زندگی می‌کنه.</p>
+      <div class="hero-actions">
+        <a href="#articles" class="btn-primary">مقاله‌ها رو بخون</a>
+        <a href="#rappers" class="btn-ghost">لیست رپرها</a>
+      </div>
+    </div>
+    <div class="ticker">
+      <div class="ticker-track" id="tickerTrack">
+        <span>رپ فارسی</span><span>رپ آمریکایی</span><span>فریستایل</span><span>بیت‌سازی</span><span>فلو</span><span>زیرزمین</span><span>ترک جدید</span><span>هیپ‌هاپ</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTICLES -->
+  <section id="articles">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow-line"><i></i>مقالات<i></i></div>
+        <h2 class="section-title">نوشته‌هایی درباره‌ی دنیای رپ</h2>
+        <p class="section-desc">چند مقاله کوتاه برای فهمیدن ریشه‌ها، فلو، و فرهنگی که پشت این موسیقی هست.</p>
+      </div>
+      <div class="articles">
+
+        <article class="article-card glass reveal" onclick="this.classList.toggle('open')">
+          <span class="article-tag">تاریخچه</span>
+          <h3>رپ فارسی از کجا شروع شد؟</h3>
+          <p class="article-excerpt">از اولین ترک‌های زیرزمینی دهه‌ی هشتاد شمسی تا پلتفرم‌های امروزی، مسیر رپ فارسی پر از فراز و فرود بوده.</p>
+          <div class="article-full">
+            رپ فارسی بدون استودیوهای بزرگ و بدون حمایت رسمی رشد کرد. نسل اول رپرها با امکانات محدود، در اتاق‌های شخصی ضبط می‌کردن و ترک‌هاشون رو از طریق فایل‌شیرینگ و فروم‌های موسیقی پخش می‌کردن. همین محدودیت باعث شد رپ فارسی از همون ابتدا لحنی خام و صادق داشته باشه؛ موضوعاتی مثل زندگی روزمره، نابرابری، و هویت نسل جوان. با ورود اینترنت پرسرعت و شبکه‌های اجتماعی، این ژانر از زیرزمین بیرون اومد و امروز یکی از پرشنونده‌ترین سبک‌های موسیقی فارسی‌زبانه.
+          </div>
+          <div class="article-more">ادامه مطلب
+            <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </article>
+
+        <article class="article-card glass reveal" onclick="this.classList.toggle('open')">
+          <span class="article-tag">تکنیک</span>
+          <h3>فلو یعنی چی و چرا مهم‌ترین بخش رپه؟</h3>
+          <p class="article-excerpt">فلو، یعنی رابطه‌ی صدا با ریتم بیت؛ چیزی که یک ترک معمولی رو تبدیل به یک ترک به‌یادموندنی می‌کنه.</p>
+          <div class="article-full">
+            وقتی از فلو حرف می‌زنیم، منظورمون فقط سرعت خوندن نیست؛ فلو یعنی اینکه کلمات، مکث‌ها و تاکیدها چقدر دقیق روی ضرب بیت می‌شینن. یک رپر با فلوی قوی می‌تونه ریتم رو بشکنه، جلو بزنه یا عقب بمونه بدون اینکه گوش شنونده گم بشه. همین مهارته که رپ رو از خوندن ساده‌ی متن روی موسیقی جدا می‌کنه و به یک هنر ریتمیک تبدیلش می‌کنه.
+          </div>
+          <div class="article-more">ادامه مطلب
+            <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </article>
+
+        <article class="article-card glass reveal" onclick="this.classList.toggle('open')">
+          <span class="article-tag">فرهنگ</span>
+          <h3>چرا رپ صدای نسل زد شده؟</h3>
+          <p class="article-excerpt">صداقت متن‌ها، بیت‌های تاریک، و لحن مستقیم؛ دلایلی که رپ رو به موسیقی محبوب نسل جدید تبدیل کرده.</p>
+          <div class="article-full">
+            برخلاف خیلی از سبک‌های موسیقی که روایتی رمانتیک و دور از واقعیت دارن، رپ معمولاً مستقیم سراغ مسئله می‌ره. نسل زد که با شبکه‌های اجتماعی و دسترسی زیاد به اطلاعات بزرگ شده، این صداقت رو بیشتر از هر چیز دیگه‌ای دنبال می‌کنه. از طرفی، تولید موسیقی رپ به تجهیزات سنگین نیاز نداره؛ یک میکروفون و یک لپ‌تاپ کافیه، همین باعث شده صداهای جدید و متنوع مدام وارد این فضا بشن.
+          </div>
+          <div class="article-more">ادامه مطلب
+            <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </article>
+
+        <article class="article-card glass reveal" onclick="this.classList.toggle('open')">
+          <span class="article-tag">مقایسه</span>
+          <h3>رپ فارسی و رپ آمریکایی؛ چه شباهت و فرقی دارن؟</h3>
+          <p class="article-excerpt">دو فرهنگ متفاوت، یک ریشه‌ی مشترک؛ نگاهی به تفاوت لحن، موضوع و بیت‌سازی در این دو دنیا.</p>
+          <div class="article-full">
+            رپ آمریکایی از دل هیپ‌هاپ نیویورک و بعدها جنوب آمریکا بیرون اومد و صنعتی چند میلیارد دلاری شده. رپ فارسی اما مسیر متفاوتی رو طی کرد؛ بدون صنعت موسیقی رسمی پشتش، و بیشتر متکی به تلاش فردی هنرمندها. با این حال هر دو ژانر یک چیز مشترک دارن: استفاده از موسیقی به‌عنوان ابزاری برای روایت زندگی واقعی، از خیابون تا احساسات شخصی.
+          </div>
+          <div class="article-more">ادامه مطلب
+            <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- VINYL STRIP -->
+  <div class="strip reveal">
+    <div class="wrap">
+      <div class="vinyl-row" id="vinylRow"></div>
+    </div>
+  </div>
+
+  <!-- RAPPERS -->
+  <section id="rappers">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow-line"><i></i>آرشیو رپرها<i></i></div>
+        <h2 class="section-title">رپرهای فارسی و خارجی</h2>
+        <p class="section-desc">چند تا از چهره‌های شناخته‌شده‌ی رپ فارسی و رپ جهانی، به همراه چند ترک شاخص‌شون.</p>
+      </div>
+
+      <div class="tab-row">
+        <button class="tab-btn active" data-tab="fa">رپرهای فارسی</button>
+        <button class="tab-btn" data-tab="en">رپرهای خارجی</button>
+      </div>
+
+      <div class="tab-panel active" id="tab-fa">
+        <div class="rappers-grid">
+
+          <div class="rapper-card glass reveal">
+            <div class="rapper-top"><div class="avatar">ه</div><div><div class="rapper-name">هیچکس</div><div class="rapper-role">از پایه‌گذاران رپ زیرزمینی ایران</div></div></div>
+            <div class="songs">
+              <div class="song">♪ یه مشت سرباز</div>
+              <div class="song">♪ بازگشت</div>
+            </div>
+          </div>
+
+          <div class="rapper-card glass reveal">
+            <div class="rapper-top"><div class="avatar">ی</div><div><div class="rapper-name">یاس</div><div class="rapper-role">از چهره‌های شناخته‌شده‌ی هیپ‌هاپ فارسی</div></div></div>
+            <div class="songs">
+              <div class="song">♪ CD رو بشکن</div>
+            </div>
+          </div>
+
+          <div class="rapper-card glass reveal">
+            <div class="rapper-top"><div class="avatar">ب</div><div><div class="rapper-name">بهرام</div><div class="rapper-role">شناخته‌شده برای لحن اجتماعی و انتقادی</div></div></div>
+            <div class="songs">
+              <div class="song">♪ شک کن</div>
+            </div>
+          </div>
+
+          <div class="rapper-card glass reveal">
+            <div class="rapper-top"><div class="avatar">س</div><div><div class="rapper-name">ساسی مانکن</div><div class="rapper-role">از پرشنونده‌ترین خواننده‌های زیرزمینی</div></div></div>
+            <div class="songs">
+              <div class="song">♪ جنتلمن</div>
+              <div class="song">♪ مامان منو ببخش</div>
+            </div>
+          </div>
+
+          <div class="rapper-card glass reveal">
+            <div class="rapper-top"><div class="avatar">ب</div><div><div class="rapper-name">بهزاد لیتو</div><div class="rapper-role">از صداهای شناخته‌شده‌ی رپ فارسی</div></div></div>
+            <div class="songs">
+              <div class="song">♪ بمب</div>
+            </div>
+          </div>
+
+          <div class="rapper-card glass reveal">
+            <div class="rapper-top"><div class="avatar">ر</div><div><div class="rapper-name">رضا پیشرو</div><div class="rapper-role">شناخته‌شده برای فلوی تهاجمی و متن‌های تاثیرگذار</div></div></div>
+            <div class="songs">
+              <div class="song">♪ لاکچری بلوز</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="tab-panel" id="tab-en">
+        <div class="rappers-grid">
+
+          <div class="rapper-card glass">
+            <div class="rapper-top"><div class="avatar">E</div><div><div class="rapper-name">Eminem</div><div class="rapper-role">یکی از تاثیرگذارترین رپرهای تاریخ</div></div></div>
+            <div class="songs">
+              <div class="song">♪ Lose Yourself</div>
+              <div class="song">♪ Rap God</div>
+              <div class="song">♪ Stan</div>
+            </div>
+          </div>
+
+          <div class="rapper-card glass">
+            <div class="rapper-top"><div class="avatar">D</div><div><div class="rapper-name">Drake</div><div class="rapper-role">از پرفروش‌ترین هنرمندان هیپ‌هاپ امروز</div></div></div>
+            <div class="songs">
+              <div class="song">♪ God's Plan</div>
+              <div class="song">♪ Hotline Bling</div>
+            </div>
+          </div>
+
+          <div class="rapper-card glass">
+            <div class="rapper-top"><div class="avatar">K</div><div><div class="rapper-name">Kendrick Lamar</div><div class="rapper-role">شناخته‌شده برای متن‌های عمیق و اجتماعی</div></div></div>
+            <div class="songs">
+              <div class="song">♪ HUMBLE.</div>
+              <div class="song">♪ Alright</div>
+            </div>
+          </div>
+
+          <div class="rapper-card glass">
+            <div class="rapper-top"><div class="avatar">T</div><div><div class="rapper-name">Travis Scott</div><div class="rapper-role">ترکیب رپ و صداهای تجربی</div></div></div>
+            <div class="songs">
+              <div class="song">♪ SICKO MODE</div>
+              <div class="song">♪ Goosebumps</div>
+            </div>
+          </div>
+
+          <div class="rapper-card glass">
+            <div class="rapper-top"><div class="avatar">2</div><div><div class="rapper-name">Tupac Shakur</div><div class="rapper-role">از افسانه‌های نسل اول رپ آمریکایی</div></div></div>
+            <div class="songs">
+              <div class="song">♪ Changes</div>
+              <div class="song">♪ Dear Mama</div>
+            </div>
+          </div>
+
+          <div class="rapper-card glass">
+            <div class="rapper-top"><div class="avatar">J</div><div><div class="rapper-name">Jay-Z</div><div class="rapper-role">هنرمند و تاجر موفق در صنعت هیپ‌هاپ</div></div></div>
+            <div class="songs">
+              <div class="song">♪ Empire State of Mind</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- STYLES -->
+  <section id="styles">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow-line"><i></i>سبک و حال‌وهوا<i></i></div>
+        <h2 class="section-title">این سایت با چه حسی ساخته شده</h2>
+        <p class="section-desc">تم تاریک، لمس شیشه‌ای و ریتم آبی؛ ترکیبی که هم مینیمال بمونه، هم حس زیرزمین رو منتقل کنه.</p>
+      </div>
+      <div class="pill-cloud reveal">
+        <span class="pill">تم آبی و مشکی</span>
+        <span class="pill">افکت شیشه‌ای</span>
+        <span class="pill">مینیمال</span>
+        <span class="pill">مدرن</span>
+        <span class="pill">مناسب نسل زد</span>
+        <span class="pill">ریسپانسیو کامل</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact-card glass reveal">
+        <div class="tg-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M21 4L2.5 11.5c-1 .4-1 1.6.1 1.9l4.4 1.4 1.7 5.2c.3.9 1.4 1.1 2 .4l2.5-2.7 4.6 3.4c.8.6 2 .2 2.2-.8L22.9 5c.2-1-.9-1.7-1.9-1z" stroke="#eaf3ff" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        </div>
+        <h2 class="section-title">به کانال ما بپیوند</h2>
+        <p class="section-desc">برای آهنگ‌های جدید، مقالات و معرفی رپرهای تازه، از طریق تلگرام در ارتباط باش.</p>
+        <div class="tg-id">
+          <span id="tgIdText">@M09z8900</span>
+          <button class="copy-btn" onclick="copyTelegram(this)">کپی آیدی</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="margin-bottom:14px;">
+          <span class="logo-mark">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M9 18V5l10-2v13" stroke="#eaf3ff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6" cy="18" r="3" stroke="#eaf3ff" stroke-width="1.6"/><circle cx="16" cy="16" r="3" stroke="#eaf3ff" stroke-width="1.6"/></svg>
+          </span>
+          بیت‌سیاه
+        </div>
+        <p class="footer-desc">رسانه‌ای برای علاقه‌مندان به رپ فارسی و رپ جهانی؛ مقاله، معرفی هنرمند و آرشیو آهنگ.</p>
+      </div>
+      <div>
+        <div class="footer-title">دسترسی سریع</div>
+        <div class="footer-links">
+          <a href="#home">خانه</a>
+          <a href="#articles">مقالات</a>
+          <a href="#rappers">رپرها</a>
+          <a href="#styles">سبک‌ها</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-title">ارتباط با ما</div>
+        <div class="footer-links">
+          <a href="#contact">تلگرام: M09z8900@</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© تمامی حقوق برای بیت‌سیاه محفوظ است.</span>
+      <span>ساخته‌شده با ❤ برای عاشقان رپ</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// mobile menu
+const burger = document.getElementById('burger');
+const navLinks = document.getElementById('navLinks');
+burger.addEventListener('click', ()=>{
+  burger.classList.toggle('open');
+  navLinks.classList.toggle('open');
+});
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+  burger.classList.remove('open');
+  navLinks.classList.remove('open');
+}));
+
+// ticker duplicate for seamless loop
+const track = document.getElementById('tickerTrack');
+track.innerHTML += track.innerHTML;
+
+// vinyl row generate + duplicate
+const vinylRow = document.getElementById('vinylRow');
+for(let i=0;i<10;i++){
+  const v = document.createElement('div');
+  v.className='vinyl';
+  v.style.animationDuration = (4+Math.random()*4).toFixed(1)+'s';
+  vinylRow.appendChild(v);
+}
+vinylRow.innerHTML += vinylRow.innerHTML;
+
+// scroll reveal
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+},{threshold:0.12});
+revealEls.forEach(el=>io.observe(el));
+
+// tabs
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+  });
+});
+
+// copy telegram id
+function copyTelegram(btn){
+  const text = document.getElementById('tgIdText').textContent;
+  const done = ()=>{
+    const old = btn.textContent;
+    btn.textContent = 'کپی شد ✓';
+    btn.classList.add('copied');
+    setTimeout(()=>{ btn.textContent = old; btn.classList.remove('copied'); }, 1800);
+  };
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(text).then(done).catch(done);
+  } else {
+    done();
+  }
+}
+</script>
+</body>
+</html>
